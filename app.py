@@ -10,7 +10,7 @@ from io import BytesIO
 st.set_page_config(page_title="Supply Chain Tariff Optimization AI", layout="wide")
 
 # --- Branding Header
-st.image('branding/logo.png', width=180)
+# st.image('branding/logo.png', width=180)
 st.markdown("<h1 style='text-align: center; color: #003366;'>Supply Chain Tariff Optimization AI</h1>", unsafe_allow_html=True)
 st.caption("Helping you source smarter in a shifting trade landscape — Powered by Gemini AI")
 
