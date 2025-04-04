@@ -1,20 +1,28 @@
-# --- Supply Chain Tariff Optimization AI App (Streamlit Version) ---
+# --- Supply Chain Tariff Optimization AI App (Final Version) ---
 
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import requests
+import toml
 from io import BytesIO
 
-# --- Streamlit Page Config
-st.set_page_config(page_title="Supply Chain Tariff Optimization AI", layout="wide")
+# --- Load Theme Settings Manually
+theme_config = toml.load('streamlit_config.toml')
+
+st.set_page_config(
+    page_title="Supply Chain Tariff Optimization AI",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 
 # --- Branding Header
+# (Optional: Remove this if logo not ready)
 # st.image('branding/logo.png', width=180)
 st.markdown("<h1 style='text-align: center; color: #003366;'>Supply Chain Tariff Optimization AI</h1>", unsafe_allow_html=True)
 st.caption("Helping you source smarter in a shifting trade landscape — Powered by Gemini AI")
 
-# --- Real Tariff Data (Annex I tariffs)
+# --- Tariff Data (Annex I)
 annex_tariffs = {
     'Algeria': 30, 'Angola': 32, 'Bangladesh': 37, 'Bosnia and Herzegovina': 35,
     'Botswana': 37, 'Brunei': 24, 'Cambodia': 49, 'Cameroon': 11, 'Chad': 13,
@@ -31,7 +39,6 @@ annex_tariffs = {
     'Zimbabwe': 18
 }
 
-# --- Product Categories and Supply Strength
 products = {
     'Apparel': ['Cotton/Natural', 'Synthetic'],
     'Electronics': ['Chips', 'EV Batteries', 'Consumer Devices'],
@@ -88,8 +95,6 @@ annual_import_value = st.sidebar.number_input("Annual Import Value ($):", value=
 individual_shipment_value = st.sidebar.number_input("Individual Shipment Value ($) (Optional):", value=0, step=100)
 
 search = st.sidebar.button("🔍 Optimize Supply Chain")
-
-
 
 
 
@@ -170,13 +175,7 @@ if search:
         else:
             st.warning("❗ No better alternative countries found.")
 
-
-
-
-
-
 # --- Gemini LLM Chat Feature
-
 st.markdown("---")
 st.header("💬 Ask About Tariffs and Sourcing")
 
